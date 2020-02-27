@@ -2,10 +2,11 @@
   "name": "romannumerals",
   "version": "1.0.0",
   "description": "Roman Numeral Processor",
-  "main": "index.js",
+  "main": "roman.js",
   "scripts": {
     "test": "jest",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "sample": "node sample.js"
   },
   "author": "DP",
   "license": "ISC",

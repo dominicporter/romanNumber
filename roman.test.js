@@ -53,10 +53,12 @@ test('Given null, constructor throw "value required"', () => {
     expect((new RomanNumber(65)).toString()).toEqual('LXV');
     expect((new RomanNumber(33)).toString()).toEqual('XXXIII');
     expect((new RomanNumber(7)).toString()).toEqual('VII');
+    expect((new RomanNumber(3)).toString()).toEqual('III');
     expect((new RomanNumber(2)).toString()).toEqual('II');
   });
 
   test('Given complicated numbers, converts them to Roman', () => {
+    expect((new RomanNumber(4)).toString()).toEqual('IV');
     expect((new RomanNumber(1968)).toString()).toEqual('MCMLXVIII');
     expect((new RomanNumber(1473)).toString()).toEqual('MCDLXXIII');
     expect((new RomanNumber(2999)).toString()).toEqual('MMCMXCIX');
