@@ -15,5 +15,12 @@ test('Given null, constructor throw "value required"', () => {
     expect(() => new Roman(-10)).toThrow(new Error('invalid range'));
   });
   test('Given bigger than 3999, constructor throw "invalid range"', () => {
-    expect(() => new Roman(4000)).toThrow(new Error('invalid range'));
+    expect(() => new Roman(10000)).toThrow(new Error('invalid range'));
+  });
+
+  test('Given invalid values, constructor throw "invalid value"', () => {
+    expect(() => new Roman('abc123')).toThrow(new Error('invalid value'));
+    expect(() => new Roman('123')).toThrow(new Error('invalid value'));
+    expect(() => new Roman('ABC')).toThrow(new Error('invalid value'));
+    expect(() => new Roman(',.;#!"£$%%^&')).toThrow(new Error('invalid value'));
   });
