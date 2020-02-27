@@ -17,7 +17,7 @@ const romanDict = {
 const VALID_NUMERALS = 'MDCLXVI'; // Note these are in descending order
 
 const getBiggestRomanThatFitsIn = (decimal) => {
-    return Object.entries(romanDict).find(([rom,dec]) => dec <= decimal)[0];
+    return Object.entries(romanDict).find(([,dec]) => dec <= decimal)[0];
 };
 
 const decimalToRoman = decimal => {
@@ -30,37 +30,36 @@ const decimalToRoman = decimal => {
 
     return roman;
 };
-class RomanNumber{
-    constructor(input){
-        
 
-        if (input === null || input === '') throw new Error('value required');
-        if (typeof(input) === 'number'){
-            if (input < 1 || input > 3999) throw new Error('invalid range');
+function RomanNumber(input) {
+    if (!(this instanceof RomanNumber)) return new RomanNumber(input);        
 
-            this.decimal = input;
-            this.roman = decimalToRoman(input);
-        } 
-        
-        const inputRegexp = RegExp(`^[${VALID_NUMERALS}]+$`);
-        if (typeof(input) === 'string'){
-            if (!inputRegexp.test(input)) throw new Error('invalid value');
-            VALID_NUMERALS.split('').forEach(c => {
-                if (input.includes(c+c+c+c))throw new Error('invalid value');
-            });
+    if (input === null || input === '') throw new Error('value required');
+    if (typeof(input) === 'number'){
+        if (input < 1 || input > 3999) throw new Error('invalid range');
 
-            this.decimal = 0;
-            this.roman = input;
-        } 
-    }
+        this.decimal = input;
+        this.roman = decimalToRoman(input);
+    } 
+    
+    const inputRegexp = RegExp(`^[${VALID_NUMERALS}]+$`);
+    if (typeof(input) === 'string'){
+        if (!inputRegexp.test(input)) throw new Error('invalid value');
+        VALID_NUMERALS.split('').forEach(c => {
+            if (input.includes(c+c+c+c))throw new Error('invalid value');
+        });
 
-    toString(){
+        this.decimal = 0;
+        this.roman = input;
+    } 
+
+    this.toString = () => {
         return this.roman;
-    }
+    };
 
-    toInt(){
+    this.toInt = () => {
         return this.decimal;
-    }
+    };
 }
 
 module.exports = { RomanNumber };

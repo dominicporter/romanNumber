@@ -61,3 +61,7 @@ test('Given null, constructor throw "value required"', () => {
     expect((new RomanNumber(1473)).toString()).toEqual('MCDLXXIII');
     expect((new RomanNumber(2999)).toString()).toEqual('MMCMXCIX');
   });
+
+  test('When library called without new, still gets object', () => {
+    expect((RomanNumber(1968)).toString()).toEqual('MCMLXVIII');
+  });
