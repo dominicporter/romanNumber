@@ -25,6 +25,8 @@ test('Given null, constructor throw "value required"', () => {
     expect(() => new Roman('ABC')).toThrow(new Error('invalid value'));
     expect(() => new Roman(',.;#!"£$%%^&')).toThrow(new Error('invalid value'));
     expect(() => new Roman('error')).toThrow(new Error('invalid value'));
+    expect(() => new Roman('IIII')).toThrow(new Error('invalid value'));
+    expect(() => new Roman('MMMMCMXCIX')).toThrow(new Error('invalid value'));
+    expect(() => new Roman('MMMMDMXCIX')).toThrow(new Error('invalid value'));
   });
-
 
