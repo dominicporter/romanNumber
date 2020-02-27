@@ -25,27 +25,17 @@ const getNumeralsAtBeginning = roman => {
 };
 
 const decimalToRoman = decimal => {
-    // TODO Get rid of the mutation and side effect
-    var roman = '';
-    while (decimal > 0){
-        const nextNumerals = getBiggestRomanThatFitsIn(decimal);
-        roman += nextNumerals;
-        decimal -= romanDict[nextNumerals];
-    }
+    if (decimal === 0) return '';
 
-    return roman;
+    const nextNumerals = getBiggestRomanThatFitsIn(decimal);
+    return nextNumerals + decimalToRoman(decimal-romanDict[nextNumerals]);
 };
 
 const romanToDecimal = roman => {
-    // TODO Get rid of the mutation and side effect
-    var decimal = 0;
-    while (roman){
-        const startNumerals = getNumeralsAtBeginning(roman);
-        roman = roman.substr(startNumerals.length);
-        decimal += romanDict[startNumerals];
-    }
+    if (roman === '') return 0;
 
-    return decimal;
+    const startNumerals = getNumeralsAtBeginning(roman);
+    return romanDict[startNumerals] + romanToDecimal(roman.substr(startNumerals.length));
 };
 
 function RomanNumber(input){
@@ -70,13 +60,8 @@ function RomanNumber(input){
         this.roman = input;
     } 
 
-    this.toString = () => {
-        return this.roman;
-    };
-
-    this.toInt = () => {
-        return this.decimal;
-    };
+    this.toString = () =>  this.roman;
+    this.toInt = () => this.decimal;
 }
 
 module.exports = { RomanNumber };
