@@ -1,32 +1,46 @@
-const { Roman } = require('./roman');
+const { RomanNumber } = require('./roman');
 
 test('Given null, constructor throw "value required"', () => {
-    expect(() => new Roman(null)).toThrow(new Error('value required'));
+    expect(() => new RomanNumber(null)).toThrow(new Error('value required'));
   });
   
   test('Given empty string, constructor throw "value required"', () => {
-    expect(() => new Roman('')).toThrow(new Error('value required'));
+    expect(() => new RomanNumber('')).toThrow(new Error('value required'));
   });
 
   test('Given 0, constructor throw "invalid range"', () => {
-    expect(() => new Roman(0)).toThrow(new Error('invalid range'));
+    expect(() => new RomanNumber(0)).toThrow(new Error('invalid range'));
   });
   test('Given negative, constructor throw "invalid range"', () => {
-    expect(() => new Roman(-10)).toThrow(new Error('invalid range'));
+    expect(() => new RomanNumber(-10)).toThrow(new Error('invalid range'));
   });
   test('Given bigger than 3999, constructor throw "invalid range"', () => {
-    expect(() => new Roman(10000)).toThrow(new Error('invalid range'));
+    expect(() => new RomanNumber(10000)).toThrow(new Error('invalid range'));
   });
 
   test('Given invalid values, constructor throw "invalid value"', () => {
-    expect(() => new Roman('abc123')).toThrow(new Error('invalid value'));
-    expect(() => new Roman('CD1X')).toThrow(new Error('invalid value'));
-    expect(() => new Roman('123')).toThrow(new Error('invalid value'));
-    expect(() => new Roman('ABC')).toThrow(new Error('invalid value'));
-    expect(() => new Roman(',.;#!"£$%%^&')).toThrow(new Error('invalid value'));
-    expect(() => new Roman('error')).toThrow(new Error('invalid value'));
-    expect(() => new Roman('IIII')).toThrow(new Error('invalid value'));
-    expect(() => new Roman('MMMMCMXCIX')).toThrow(new Error('invalid value'));
-    expect(() => new Roman('MMMMDMXCIX')).toThrow(new Error('invalid value'));
+    expect(() => new RomanNumber('abc123')).toThrow(new Error('invalid value'));
+    expect(() => new RomanNumber('CD1X')).toThrow(new Error('invalid value'));
+    expect(() => new RomanNumber('123')).toThrow(new Error('invalid value'));
+    expect(() => new RomanNumber('ABC')).toThrow(new Error('invalid value'));
+    expect(() => new RomanNumber(',.;#!"£$%%^&')).toThrow(new Error('invalid value'));
+    expect(() => new RomanNumber('error')).toThrow(new Error('invalid value'));
+    expect(() => new RomanNumber('IIII')).toThrow(new Error('invalid value'));
+    expect(() => new RomanNumber('MMMMCMXCIX')).toThrow(new Error('invalid value'));
+    expect(() => new RomanNumber('MMMMDMXCIX')).toThrow(new Error('invalid value'));
   });
 
+  test('When constructor called with a valid value, returns a valid object', () => {
+    const rn = new RomanNumber(1);
+    expect(typeof(rn)).toEqual('object');
+  });
+
+  test('When given simple numbers, converts them to Roman', () => {
+    expect((new RomanNumber(1000)).toString()).toEqual('M');
+    expect((new RomanNumber(500)).toString()).toEqual('D');
+    expect((new RomanNumber(100)).toString()).toEqual('C');
+    expect((new RomanNumber(50)).toString()).toEqual('L');
+    expect((new RomanNumber(10)).toString()).toEqual('X');
+    expect((new RomanNumber(5)).toString()).toEqual('V');
+    expect((new RomanNumber(1)).toString()).toEqual('I');
+  });
