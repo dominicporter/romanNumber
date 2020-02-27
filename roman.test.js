@@ -35,7 +35,7 @@ test('Given null, constructor throw "value required"', () => {
     expect(typeof(rn)).toEqual('object');
   });
 
-  test('When given simple numbers, converts them to Roman', () => {
+  test('Given simple numbers, converts them to Roman', () => {
     expect((new RomanNumber(1000)).toString()).toEqual('M');
     expect((new RomanNumber(500)).toString()).toEqual('D');
     expect((new RomanNumber(100)).toString()).toEqual('C');
@@ -43,4 +43,14 @@ test('Given null, constructor throw "value required"', () => {
     expect((new RomanNumber(10)).toString()).toEqual('X');
     expect((new RomanNumber(5)).toString()).toEqual('V');
     expect((new RomanNumber(1)).toString()).toEqual('I');
+  });
+
+  test('Given non subtractive numbers, converts them to Roman', () => {
+    expect((new RomanNumber(1515)).toString()).toEqual('MDXV');
+    expect((new RomanNumber(501)).toString()).toEqual('DI');
+    expect((new RomanNumber(210)).toString()).toEqual('CCX');
+    expect((new RomanNumber(65)).toString()).toEqual('LXV');
+    expect((new RomanNumber(33)).toString()).toEqual('XXXIII');
+    expect((new RomanNumber(7)).toString()).toEqual('VII');
+    expect((new RomanNumber(2)).toString()).toEqual('II');
   });

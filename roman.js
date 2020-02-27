@@ -7,11 +7,29 @@ const romanDict = {
     V: 5,
     I: 1
 };
-const VALID_NUMERALS = 'MCDXLVI';
+
+const VALID_NUMERALS = 'MDCLXVI'; // Note these are in descending order
+
+const getBiggestRomanThatFitsIn = (decimal) =>{
+    var retVal = '';
+    VALID_NUMERALS.split('').forEach(numeral => {
+        // TODO refactor this without iterating over whole array
+        if(retVal === '' && romanDict[numeral] <= decimal) {
+            retVal = numeral;
+         }
+    });
+    return retVal;
+};
+
 const decimalToRoman = decimal => {
-    return VALID_NUMERALS.split('').reduce((acc,curr) => {
-        return (romanDict[curr] === decimal) ? curr: acc;
-    }, 0);
+    var roman = '';
+    while (decimal > 0){
+        const nextChar = getBiggestRomanThatFitsIn(decimal);
+        roman += nextChar;
+        decimal -= romanDict[nextChar];
+    }
+
+    return roman;
 };
 class RomanNumber{
     constructor(input){
