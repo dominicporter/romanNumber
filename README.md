@@ -29,3 +29,5 @@ Install Node Modules:
 `npm run lint`
 
 ### Run example program
+
+`npm run sample`
