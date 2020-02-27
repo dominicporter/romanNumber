@@ -1,6 +1,6 @@
 # Roman Numerals
 
-This is a library that will convert back and forth from Roman Numerals to Decimal Numbers.
+This is a library that will convert back and forth from Roman Numerals to Arabic Numbers.
 
 ## Usage
 
