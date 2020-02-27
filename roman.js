@@ -16,11 +16,16 @@ const romanDict = {
 
 const VALID_NUMERALS = 'MDCLXVI'; // Note these are in descending order
 
-const getBiggestRomanThatFitsIn = (decimal) => {
+const getBiggestRomanThatFitsIn = decimal => {
     return Object.entries(romanDict).find(([,dec]) => dec <= decimal)[0];
 };
 
+const getNumeralsAtBeginning = roman => {
+    return Object.entries(romanDict).find(([rom,]) => roman.startsWith(rom))[0];
+}
+
 const decimalToRoman = decimal => {
+    // TODO Get rid of the mutation and side effect
     var roman = '';
     while (decimal > 0){
         const nextNumerals = getBiggestRomanThatFitsIn(decimal);
@@ -31,7 +36,16 @@ const decimalToRoman = decimal => {
     return roman;
 };
 
-function RomanNumber(input) {
+const romanToDecimal = roman => {
+    // TODO Get rid of the mutation and side effect
+    var decimal = 0;
+    while (roman){
+        const startNumerals = getNumeralsAtBeginning(roman);
+        return romanDict[startNumerals];
+    }
+}
+
+function RomanNumber(input){
     if (!(this instanceof RomanNumber)) return new RomanNumber(input);        
 
     if (input === null || input === '') throw new Error('value required');
@@ -49,7 +63,7 @@ function RomanNumber(input) {
             if (input.includes(c+c+c+c))throw new Error('invalid value');
         });
 
-        this.decimal = 0;
+        this.decimal = romanToDecimal(input);
         this.roman = input;
     } 
 

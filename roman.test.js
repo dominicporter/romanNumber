@@ -65,3 +65,13 @@ test('Given null, constructor throw "value required"', () => {
   test('When library called without new, still gets object', () => {
     expect((RomanNumber(1968)).toString()).toEqual('MCMLXVIII');
   });
+
+  test('Given simple numerals, converts them to Decimal', () => {
+    expect((new RomanNumber('M')).toInt()).toEqual(1000);
+    expect((new RomanNumber('D')).toInt()).toEqual(500);
+    expect((new RomanNumber('C')).toInt()).toEqual(100);
+    expect((new RomanNumber('L')).toInt()).toEqual(50);
+    expect((new RomanNumber('X')).toInt()).toEqual(10);
+    expect((new RomanNumber('V')).toInt()).toEqual(5);
+    expect((new RomanNumber('I')).toInt()).toEqual(1);
+  });
