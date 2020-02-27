@@ -1,5 +1,6 @@
 const { Roman } = require('./roman');
 
-test('Constructor doesnt throw', () => {
-  new Roman('foo');
-});
+test('Given null, constructor throw "value required"', () => {
+    expect(() => new Roman(null)).toThrow(new Error('value required'));
+  });
+  
