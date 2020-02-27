@@ -1,32 +1,31 @@
 const romanDict = {
     M: 1000,
+    CM: 900,
     D: 500,
+    CD: 400,
     C: 100,
+    XC: 90,
     L: 50,
+    XL: 40,
     X: 10,
+    IX: 9,
     V: 5,
+    IV: 4,
     I: 1
 };
 
 const VALID_NUMERALS = 'MDCLXVI'; // Note these are in descending order
 
-const getBiggestRomanThatFitsIn = (decimal) =>{
-    var retVal = '';
-    VALID_NUMERALS.split('').forEach(numeral => {
-        // TODO refactor this without iterating over whole array
-        if(retVal === '' && romanDict[numeral] <= decimal) {
-            retVal = numeral;
-         }
-    });
-    return retVal;
+const getBiggestRomanThatFitsIn = (decimal) => {
+    return Object.entries(romanDict).find(([rom,dec]) => dec <= decimal)[0];
 };
 
 const decimalToRoman = decimal => {
     var roman = '';
     while (decimal > 0){
-        const nextChar = getBiggestRomanThatFitsIn(decimal);
-        roman += nextChar;
-        decimal -= romanDict[nextChar];
+        const nextNumerals = getBiggestRomanThatFitsIn(decimal);
+        roman += nextNumerals;
+        decimal -= romanDict[nextNumerals];
     }
 
     return roman;
