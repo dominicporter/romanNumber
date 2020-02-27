@@ -75,3 +75,14 @@ test('Given null, constructor throw "value required"', () => {
     expect((new RomanNumber('V')).toInt()).toEqual(5);
     expect((new RomanNumber('I')).toInt()).toEqual(1);
   });
+
+  test('Given complex numerals, converts them to Decimal', () => {
+    expect((new RomanNumber('III')).toInt()).toEqual(3);
+    expect((new RomanNumber('IV')).toInt()).toEqual(4);
+    expect((new RomanNumber('CDXXIX')).toInt()).toEqual(429);
+    expect((new RomanNumber('MCDLXXXII')).toInt()).toEqual(1482);
+    expect((new RomanNumber('MCMLXXX')).toInt()).toEqual(1980);
+    expect((new RomanNumber('MCMLXVIII')).toInt()).toEqual(1968);
+    expect((new RomanNumber('MCDLXXIII')).toInt()).toEqual(1473);
+  });
+

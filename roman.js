@@ -22,7 +22,7 @@ const getBiggestRomanThatFitsIn = decimal => {
 
 const getNumeralsAtBeginning = roman => {
     return Object.entries(romanDict).find(([rom,]) => roman.startsWith(rom))[0];
-}
+};
 
 const decimalToRoman = decimal => {
     // TODO Get rid of the mutation and side effect
@@ -41,9 +41,12 @@ const romanToDecimal = roman => {
     var decimal = 0;
     while (roman){
         const startNumerals = getNumeralsAtBeginning(roman);
-        return romanDict[startNumerals];
+        roman = roman.substr(startNumerals.length);
+        decimal += romanDict[startNumerals];
     }
-}
+
+    return decimal;
+};
 
 function RomanNumber(input){
     if (!(this instanceof RomanNumber)) return new RomanNumber(input);        
