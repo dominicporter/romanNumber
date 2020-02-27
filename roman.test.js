@@ -20,7 +20,11 @@ test('Given null, constructor throw "value required"', () => {
 
   test('Given invalid values, constructor throw "invalid value"', () => {
     expect(() => new Roman('abc123')).toThrow(new Error('invalid value'));
+    expect(() => new Roman('CD1X')).toThrow(new Error('invalid value'));
     expect(() => new Roman('123')).toThrow(new Error('invalid value'));
     expect(() => new Roman('ABC')).toThrow(new Error('invalid value'));
     expect(() => new Roman(',.;#!"£$%%^&')).toThrow(new Error('invalid value'));
+    expect(() => new Roman('error')).toThrow(new Error('invalid value'));
   });
+
+
